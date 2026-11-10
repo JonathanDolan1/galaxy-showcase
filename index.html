@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Jonathan Dolan’s personal automation system, from the machines it runs on to the checks that keep it working.">
+  <meta name="theme-color" content="#101520">
+  <title>Jonathan's Galaxy: the personal automation system I run at home</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="application/json" id="galaxy-data">{"title":"Jonathan's Galaxy","asOf":"2026-11-10","statuses":{"live":"Working","building":"In progress","idea":"Planned"},"clusters":[{"id":"infra","name":"Machines","blurb":"The server, laptop, phone and cloud sessions that the system runs on."},{"id":"agents","name":"AI agents","blurb":"Assistants that plan work, capture ideas and consult other models."},{"id":"ops","name":"Monitoring & workflow","blurb":"The board, monitors and shared notes that help me keep work on track."},{"id":"home","name":"Smart home","blurb":"Lights by voice, plus AC and plant watering projects in progress."},{"id":"showcase","name":"Portfolio","blurb":"This map, my portfolio and a team project I run my own copy of."}],"systems":[{"id":"server","name":"Always-on server","cluster":"infra","status":"live","blurb":"An old laptop running Linux around the clock. It hosts agents and home relays, and has a nightly backup.","links":["igor","reels-bot","bot-logs","lights","failure-watcher","usage-tracker","laptop","phone","watering","ac-voice"]},{"id":"laptop","name":"Dev laptop","cluster":"infra","status":"live","blurb":"My daily machine, where I build with Claude Code and Codex and run helper agents.","links":["server","helper-agents","second-opinions","shared-context","guardrails","usage-tracker"]},{"id":"phone","name":"Phone + Siri","cluster":"infra","status":"live","blurb":"Siri Shortcuts on my phone send simple web requests to the server so I can switch lights or start a task.","links":["server","lights","reels-bot","igor"]},{"id":"ai-cloud","name":"AI in the cloud","cluster":"infra","status":"live","blurb":"Claude and Codex sessions run scheduled jobs. AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.","links":["bot-logs","task-board","daily-triage","health-check","shared-context"]},{"id":"igor","name":"Igor (orchestrator agent)","cluster":"agents","status":"live","blurb":"Igor is an always-on agent that builds my morning brief, takes voice notes and queues coding jobs. I use it through Telegram.","links":["server","phone","reels-bot","task-board","failure-watcher","health-check","bot-logs"]},{"id":"reels-bot","name":"Link-to-idea bot","cluster":"agents","status":"live","blurb":"Share a short video from my phone and get back a transcript and an idea note matched to my projects.","links":["igor","phone","server"]},{"id":"helper-agents","name":"Helper agents","cluster":"agents","status":"live","blurb":"Four smaller AI helpers cover research, verification, code and handoff notes.","links":["laptop","second-opinions","usage-tracker"]},{"id":"second-opinions","name":"Second opinions","cluster":"agents","status":"live","blurb":"I use a step that asks other AI models for a second opinion before big changes.","links":["laptop","helper-agents"]},{"id":"bot-logs","name":"Bot logs connector","cluster":"agents","status":"live","blurb":"AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.","links":["server","ai-cloud","igor","task-board"]},{"id":"task-board","name":"Open Threads board","cluster":"ops","status":"live","blurb":"One board for open tasks, like a support queue. Each item has a status, a priority and a next step.","links":["daily-triage","igor","bot-logs","galaxy-map","ai-cloud"]},{"id":"daily-triage","name":"Morning sweep + nightly plan","cluster":"ops","status":"live","blurb":"Scheduled runs collect loose ends each morning and plan the night’s unattended work each evening.","links":["task-board","ai-cloud"]},{"id":"failure-watcher","name":"Failure watcher","cluster":"ops","status":"live","blurb":"A small script checks that jobs produce fresh results and alerts me when an output goes stale.","links":["server","igor","usage-tracker"]},{"id":"health-check","name":"Monthly health check","cluster":"ops","status":"live","blurb":"A scheduled monthly run finds stale or broken parts, fixes what is safe to fix and lists the rest for me to decide.","links":["ai-cloud","igor"]},{"id":"usage-tracker","name":"Usage tracker","cluster":"ops","status":"live","blurb":"Collects how much AI capacity each tool uses so I can plan work around the limits.","links":["laptop","server","helper-agents","failure-watcher"]},{"id":"shared-context","name":"Shared context","cluster":"ops","status":"live","blurb":"A shared set of rules and handoff notes so Claude and Codex can pick up each other’s work.","links":["laptop","ai-cloud","guardrails"]},{"id":"guardrails","name":"Guardrail hooks","cluster":"ops","status":"building","blurb":"I’m moving rules such as “never read secret files” out of prompts and into scripts that block the action.","links":["laptop","shared-context"]},{"id":"lights","name":"Lights by voice","cluster":"home","status":"live","blurb":"I say a phrase to Siri and the server switches bulbs and lamps through a small relay service.","links":["phone","server","ac-voice"]},{"id":"watering","name":"Plant watering","cluster":"home","status":"building","blurb":"Wireless soil sensors report moisture to the server; pumps and automatic watering to follow.","links":["server"]},{"id":"ac-voice","name":"AC by voice","cluster":"home","status":"building","blurb":"I’ve tested the manual shortcut that sends a command through an infrared blaster. The spoken Siri path still needs verification.","links":["lights","server"]},{"id":"galaxy-map","name":"This map","cluster":"showcase","status":"live","blurb":"An interactive map built from a small public data file. It shows a dated snapshot of the system.","links":["task-board","portfolio-site"]},{"id":"portfolio-site","name":"Portfolio site","cluster":"showcase","status":"live","blurb":"My portfolio, with case studies of Igor and a team web app.","links":["galaxy-map","trellife"]},{"id":"trellife","name":"Trellife (team project)","cluster":"showcase","status":"live","blurb":"A Trello-style full-stack app built by a three-person bootcamp team. I deployed and run my own copy.","links":["portfolio-site"]}]}</script>
+  <script defer src="./map.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-bar frame">
+    <a class="wordmark" href="#main"><span aria-hidden="true">✦</span> Jonathan Dolan</a>
+    <nav aria-label="Page">
+      <a href="#map">Map</a>
+      <a href="#lessons">Lessons</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main class="frame" id="main">
+    <header class="hero">
+      <div>
+        <p class="kicker"><span class="rule"></span> A field guide to my home lab</p>
+        <h1>Jonathan's Galaxy:<br><span>the personal automation system I run at home</span></h1>
+      </div>
+      <p class="intro">An always-on Linux server, AI agents, monitors and voice-controlled devices. Explore what they do, how they connect and how I check that they’re working.</p>
+    </header>
+
+    <section class="map-section" id="map" aria-labelledby="map-heading">
+      <div class="map-toolbar">
+        <div>
+          <p class="kicker">01 / Systems map</p>
+          <h2 id="map-heading">Explore the Galaxy</h2>
+        </div>
+        <ul class="legend" aria-label="System statuses"><li><span class="status live"><span class="dot" aria-hidden="true"></span>Working</span></li><li><span class="status building"><span class="dot" aria-hidden="true"></span>In progress</span></li><li><span class="status idea"><span class="dot" aria-hidden="true"></span>Planned</span></li></ul>
+      </div>
+      <div class="map-layout" id="interactive-map" hidden>
+        <div class="stage" id="stage" role="group" aria-label="Choose one of the five system clusters">
+          <span class="stage-label">Cluster view</span>
+          <svg class="orbit" viewBox="0 0 600 360" preserveAspectRatio="none" aria-hidden="true">
+            <ellipse cx="300" cy="194" rx="111" ry="88"/>
+            <ellipse cx="300" cy="194" rx="220" ry="150"/>
+            <path class="routes" d="M300 194V72 M300 194L150 180 M300 194L450 180 M300 194L150 288 M300 194L450 288"/>
+            <path class="cross" d="M300 186v16 M292 194h16"/>
+          </svg>
+        </div>
+        <div class="inspector" id="inspector" aria-label="Map details"></div>
+      </div>
+      <div class="static-map" id="static-map">
+        <p class="muted">System directory</p>
+        <details><summary>Machines</summary><ul><li><strong>Always-on server</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>An old laptop running Linux around the clock. It hosts agents and home relays, and has a nightly backup.</p></li><li><strong>Dev laptop</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>My daily machine, where I build with Claude Code and Codex and run helper agents.</p></li><li><strong>Phone + Siri</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>Siri Shortcuts on my phone send simple web requests to the server so I can switch lights or start a task.</p></li><li><strong>AI in the cloud</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>Claude and Codex sessions run scheduled jobs. AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.</p></li></ul></details>
+<details><summary>AI agents</summary><ul><li><strong>Igor (orchestrator agent)</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>Igor is an always-on agent that builds my morning brief, takes voice notes and queues coding jobs. I use it through Telegram.</p></li><li><strong>Link-to-idea bot</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>Share a short video from my phone and get back a transcript and an idea note matched to my projects.</p></li><li><strong>Helper agents</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>Four smaller AI helpers cover research, verification, code and handoff notes.</p></li><li><strong>Second opinions</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>I use a step that asks other AI models for a second opinion before big changes.</p></li><li><strong>Bot logs connector</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.</p></li></ul></details>
+<details><summary>Monitoring &amp; workflow</summary><ul><li><strong>Open Threads board</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>One board for open tasks, like a support queue. Each item has a status, a priority and a next step.</p></li><li><strong>Morning sweep + nightly plan</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>Scheduled runs collect loose ends each morning and plan the night’s unattended work each evening.</p></li><li><strong>Failure watcher</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>A small script checks that jobs produce fresh results and alerts me when an output goes stale.</p></li><li><strong>Monthly health check</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>A scheduled monthly run finds stale or broken parts, fixes what is safe to fix and lists the rest for me to decide.</p></li><li><strong>Usage tracker</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>Collects how much AI capacity each tool uses so I can plan work around the limits.</p></li><li><strong>Shared context</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>A shared set of rules and handoff notes so Claude and Codex can pick up each other’s work.</p></li><li><strong>Guardrail hooks</strong> · <span class="status building"><span class="dot" aria-hidden="true"></span>In progress</span><p>I’m moving rules such as “never read secret files” out of prompts and into scripts that block the action.</p></li></ul></details>
+<details><summary>Smart home</summary><ul><li><strong>Lights by voice</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>I say a phrase to Siri and the server switches bulbs and lamps through a small relay service.</p></li><li><strong>Plant watering</strong> · <span class="status building"><span class="dot" aria-hidden="true"></span>In progress</span><p>Wireless soil sensors report moisture to the server; pumps and automatic watering to follow.</p></li><li><strong>AC by voice</strong> · <span class="status building"><span class="dot" aria-hidden="true"></span>In progress</span><p>I’ve tested the manual shortcut that sends a command through an infrared blaster. The spoken Siri path still needs verification.</p></li></ul></details>
+<details><summary>Portfolio</summary><ul><li><strong>This map</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>An interactive map built from a small public data file. It shows a dated snapshot of the system.</p></li><li><strong>Portfolio site</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>My portfolio, with case studies of Igor and a team web app.</p></li><li><strong>Trellife (team project)</strong> · <span class="status live"><span class="dot" aria-hidden="true"></span>Working</span><p>A Trello-style full-stack app built by a three-person bootcamp team. I deployed and run my own copy.</p></li></ul></details>
+      </div>
+      <p class="snapshot-note">Dated snapshot · <time datetime="2026-11-10">10 November 2026</time> · 5 clusters / 22 systems</p>
+    </section>
+
+    <section class="story editorial" aria-labelledby="story-heading">
+      <div>
+        <p class="kicker">02 / How it works</p>
+        <h2 id="story-heading">How I keep it running</h2>
+      </div>
+      <div>
+        <p class="story-lead">Igor is an always-on agent that builds my morning brief, takes voice notes and queues coding jobs. Around it, I built a board that tracks open work like a support queue and a watcher that checks whether jobs produced fresh results.</p>
+        <dl class="mechanics">
+          <div><dt>One machine stays on</dt><dd>An old laptop runs Linux around the clock. Some scheduled jobs still need my dev laptop, so I’m moving them to the always-on server.</dd></div>
+          <div><dt>Check the output</dt><dd>The watcher looks for fresh results and alerts me when a job’s output goes stale.</dd></div>
+          <div><dt>Start with the logs</dt><dd>AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.</dd></div>
+          <div><dt>Follow the voice request</dt><dd>A Siri phrase can send a request from my phone to the server to switch the lights.</dd></div>
+          <div><dt>Keep public data small</dt><dd>This map uses a small allowlist of public descriptions and connections. I update it as a dated snapshot.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="lessons editorial" id="lessons" aria-labelledby="lessons-heading">
+      <div>
+        <p class="kicker">03 / Lessons</p>
+        <h2 id="lessons-heading">What I learned</h2>
+      </div>
+      <ol class="lesson-list">
+        <li><div><h3>Watch the output, not just the process.</h3><p>A scheduled job once skipped three days without anyone noticing, so I built a watcher that checks every job actually produced fresh results.</p></div></li>
+        <li><div><h3>Scheduled jobs need a machine that stays awake.</h3><p>Jobs on my laptop missed runs while it slept, so I’m moving them to the always-on server.</p></div></li>
+        <li><div><h3>Allowlist, not blocklist.</h3><p>For anything public, I list what’s allowed out instead of trying to list every secret to hide.</p></div></li>
+        <li><div><h3>Rules work better as code.</h3><p>I’m moving “never read secret files” from a line in a prompt into a script that blocks the action.</p></div></li>
+        <li><div><h3>Write it down for the next person.</h3><p>Handoff notes let one AI tool, or me a week later, pick up where the last one stopped.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <p class="kicker">04 / Contact</p>
+      <h2 id="contact-heading">Let’s talk support.</h2>
+      <p>I’m looking for an application or SaaS support role in Israel. I’d be happy to walk through what broke, how I found it and what I changed.</p>
+      <div class="contact-links">
+        <a class="primary" href="https://jonathan-dolan.vercel.app/#contact">Contact me <span aria-hidden="true">↗</span></a>
+        <a href="https://jonathan-dolan.vercel.app/projects/igor">Igor case study <span aria-hidden="true">↗</span></a>
+        <a href="https://jonathan-dolan.vercel.app/projects/trellife">Trellife case study <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/JonathanDolan1/galaxy-showcase">View the code <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="frame site-footer">
+    <span>Jonathan Dolan · Galaxy</span>
+    <a href="https://jonathan-dolan.vercel.app/">Portfolio <span aria-hidden="true">↗</span></a>
+  </footer>
+</body>
+</html>
