@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Jonathan Dolan’s personal automation system, from the machines it runs on to the checks that keep it working.">
+  <meta name="theme-color" content="#101520">
+  <title>Jonathan's Galaxy: the personal automation system I run at home</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="application/json" id="galaxy-data"><!-- snapshot --></script>
+  <script defer src="./map.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-bar frame">
+    <a class="wordmark" href="#main"><span aria-hidden="true">✦</span> Jonathan Dolan</a>
+    <nav aria-label="Page">
+      <a href="#map">Map</a>
+      <a href="#lessons">Lessons</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main class="frame" id="main">
+    <header class="hero">
+      <div>
+        <p class="kicker"><span class="rule"></span> A field guide to my home lab</p>
+        <h1>Jonathan's Galaxy:<br><span>the personal automation system I run at home</span></h1>
+      </div>
+      <p class="intro">An always-on Linux server, AI agents, monitors and voice-controlled devices. Explore what they do, how they connect and how I check that they’re working.</p>
+    </header>
+
+    <section class="map-section" id="map" aria-labelledby="map-heading">
+      <div class="map-toolbar">
+        <div>
+          <p class="kicker">01 / Systems map</p>
+          <h2 id="map-heading">Explore the Galaxy</h2>
+        </div>
+        <ul class="legend" aria-label="System statuses"><!-- legend --></ul>
+      </div>
+      <div class="map-layout" id="interactive-map" hidden>
+        <div class="stage" id="stage" role="group" aria-label="Choose one of the five system clusters">
+          <span class="stage-label">Cluster view</span>
+          <svg class="orbit" viewBox="0 0 600 360" preserveAspectRatio="none" aria-hidden="true">
+            <ellipse cx="300" cy="194" rx="111" ry="88"/>
+            <ellipse cx="300" cy="194" rx="220" ry="150"/>
+            <path class="routes" d="M300 194V72 M300 194L150 180 M300 194L450 180 M300 194L150 288 M300 194L450 288"/>
+            <path class="cross" d="M300 186v16 M292 194h16"/>
+          </svg>
+        </div>
+        <div class="inspector" id="inspector" aria-label="Map details"></div>
+      </div>
+      <div class="static-map" id="static-map">
+        <p class="muted">System directory</p>
+        <!-- directory -->
+      </div>
+      <p class="snapshot-note">Dated snapshot · <time datetime="<!-- snapshot date -->"><!-- snapshot label --></time> · <!-- snapshot count --></p>
+    </section>
+
+    <section class="story editorial" aria-labelledby="story-heading">
+      <div>
+        <p class="kicker">02 / How it works</p>
+        <h2 id="story-heading">How I keep it running</h2>
+      </div>
+      <div>
+        <p class="story-lead">Igor is an always-on agent that builds my morning brief, takes voice notes and queues coding jobs. Around it, I built a board that tracks open work like a support queue and a watcher that checks whether jobs produced fresh results.</p>
+        <dl class="mechanics">
+          <div><dt>One machine stays on</dt><dd>An old laptop runs Linux around the clock. Some scheduled jobs still need my dev laptop, so I’m moving them to the always-on server.</dd></div>
+          <div><dt>Check the output</dt><dd>The watcher looks for fresh results and alerts me when a job’s output goes stale.</dd></div>
+          <div><dt>Start with the logs</dt><dd>AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.</dd></div>
+          <div><dt>Follow the voice request</dt><dd>A Siri phrase can send a request from my phone to the server to switch the lights.</dd></div>
+          <div><dt>Keep public data small</dt><dd>This map uses a small allowlist of public descriptions and connections. I update it as a dated snapshot.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="lessons editorial" id="lessons" aria-labelledby="lessons-heading">
+      <div>
+        <p class="kicker">03 / Lessons</p>
+        <h2 id="lessons-heading">What I learned</h2>
+      </div>
+      <ol class="lesson-list">
+        <li><div><h3>Watch the output, not just the process.</h3><p>A scheduled job once skipped three days without anyone noticing, so I built a watcher that checks every job actually produced fresh results.</p></div></li>
+        <li><div><h3>Scheduled jobs need a machine that stays awake.</h3><p>Jobs on my laptop missed runs while it slept, so I’m moving them to the always-on server.</p></div></li>
+        <li><div><h3>Allowlist, not blocklist.</h3><p>For anything public, I list what’s allowed out instead of trying to list every secret to hide.</p></div></li>
+        <li><div><h3>Rules work better as code.</h3><p>I’m moving “never read secret files” from a line in a prompt into a script that blocks the action.</p></div></li>
+        <li><div><h3>Write it down for the next person.</h3><p>Handoff notes let one AI tool, or me a week later, pick up where the last one stopped.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-heading">
+      <p class="kicker">04 / Contact</p>
+      <h2 id="contact-heading">Let’s talk support.</h2>
+      <p>I’m looking for an application or SaaS support role in Israel. I’d be happy to walk through what broke, how I found it and what I changed.</p>
+      <div class="contact-links">
+        <a class="primary" href="https://jonathan-dolan.vercel.app/#contact">Contact me <span aria-hidden="true">↗</span></a>
+        <a href="https://jonathan-dolan.vercel.app/projects/igor">Igor case study <span aria-hidden="true">↗</span></a>
+        <a href="https://jonathan-dolan.vercel.app/projects/trellife">Trellife case study <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <footer class="frame site-footer">
+    <span>Jonathan Dolan · Galaxy</span>
+    <a href="https://jonathan-dolan.vercel.app/">Portfolio <span aria-hidden="true">↗</span></a>
+  </footer>
+</body>
+</html>

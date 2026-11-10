@@ -1,0 +1,36 @@
+{
+  "title": "Jonathan's Galaxy",
+  "asOf": "2026-11-10",
+  "statuses": {"live": "Working", "building": "In progress", "idea": "Planned"},
+  "clusters": [
+    {"id": "infra", "name": "Machines", "blurb": "The server, laptop, phone and cloud sessions that the system runs on."},
+    {"id": "agents", "name": "AI agents", "blurb": "Assistants that plan work, capture ideas and consult other models."},
+    {"id": "ops", "name": "Monitoring & workflow", "blurb": "The board, monitors and shared notes that help me keep work on track."},
+    {"id": "home", "name": "Smart home", "blurb": "Lights by voice, plus AC and plant watering projects in progress."},
+    {"id": "showcase", "name": "Portfolio", "blurb": "This map, my portfolio and a team project I run my own copy of."}
+  ],
+  "systems": [
+    {"id":"server","name":"Always-on server","cluster":"infra","status":"live","blurb":"An old laptop running Linux around the clock. It hosts agents and home relays, and has a nightly backup.","links":["igor","reels-bot","bot-logs","lights","failure-watcher","usage-tracker","laptop","phone","watering","ac-voice"]},
+    {"id":"laptop","name":"Dev laptop","cluster":"infra","status":"live","blurb":"My daily machine, where I build with Claude Code and Codex and run helper agents.","links":["server","helper-agents","second-opinions","shared-context","guardrails","usage-tracker"]},
+    {"id":"phone","name":"Phone + Siri","cluster":"infra","status":"live","blurb":"Siri Shortcuts on my phone send simple web requests to the server so I can switch lights or start a task.","links":["server","lights","reels-bot","igor"]},
+    {"id":"ai-cloud","name":"AI in the cloud","cluster":"infra","status":"live","blurb":"Claude and Codex sessions run scheduled jobs. AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.","links":["bot-logs","task-board","daily-triage","health-check","shared-context"]},
+    {"id":"igor","name":"Igor (orchestrator agent)","cluster":"agents","status":"live","blurb":"Igor is an always-on agent that builds my morning brief, takes voice notes and queues coding jobs. I use it through Telegram.","links":["server","phone","reels-bot","task-board","failure-watcher","health-check","bot-logs"]},
+    {"id":"reels-bot","name":"Link-to-idea bot","cluster":"agents","status":"live","blurb":"Share a short video from my phone and get back a transcript and an idea note matched to my projects.","links":["igor","phone","server"]},
+    {"id":"helper-agents","name":"Helper agents","cluster":"agents","status":"live","blurb":"Four smaller AI helpers cover research, verification, code and handoff notes.","links":["laptop","second-opinions","usage-tracker"]},
+    {"id":"second-opinions","name":"Second opinions","cluster":"agents","status":"live","blurb":"I use a step that asks other AI models for a second opinion before big changes.","links":["laptop","helper-agents"]},
+    {"id":"bot-logs","name":"Bot logs connector","cluster":"agents","status":"live","blurb":"AI can search the logs; the only actions it can take are sending me one alert and logging a job check-in.","links":["server","ai-cloud","igor","task-board"]},
+    {"id":"task-board","name":"Open Threads board","cluster":"ops","status":"live","blurb":"One board for open tasks, like a support queue. Each item has a status, a priority and a next step.","links":["daily-triage","igor","bot-logs","galaxy-map","ai-cloud"]},
+    {"id":"daily-triage","name":"Morning sweep + nightly plan","cluster":"ops","status":"live","blurb":"Scheduled runs collect loose ends each morning and plan the night’s unattended work each evening.","links":["task-board","ai-cloud"]},
+    {"id":"failure-watcher","name":"Failure watcher","cluster":"ops","status":"live","blurb":"A small script checks that jobs produce fresh results and alerts me when an output goes stale.","links":["server","igor","usage-tracker"]},
+    {"id":"health-check","name":"Monthly health check","cluster":"ops","status":"live","blurb":"A scheduled monthly run finds stale or broken parts, fixes what is safe to fix and lists the rest for me to decide.","links":["ai-cloud","igor"]},
+    {"id":"usage-tracker","name":"Usage tracker","cluster":"ops","status":"live","blurb":"Collects how much AI capacity each tool uses so I can plan work around the limits.","links":["laptop","server","helper-agents","failure-watcher"]},
+    {"id":"shared-context","name":"Shared context","cluster":"ops","status":"live","blurb":"A shared set of rules and handoff notes so Claude and Codex can pick up each other’s work.","links":["laptop","ai-cloud","guardrails"]},
+    {"id":"guardrails","name":"Guardrail hooks","cluster":"ops","status":"building","blurb":"I’m moving rules such as “never read secret files” out of prompts and into scripts that block the action.","links":["laptop","shared-context"]},
+    {"id":"lights","name":"Lights by voice","cluster":"home","status":"live","blurb":"I say a phrase to Siri and the server switches bulbs and lamps through a small relay service.","links":["phone","server","ac-voice"]},
+    {"id":"watering","name":"Plant watering","cluster":"home","status":"building","blurb":"Wireless soil sensors report moisture to the server; pumps and automatic watering to follow.","links":["server"]},
+    {"id":"ac-voice","name":"AC by voice","cluster":"home","status":"building","blurb":"I’ve tested the manual shortcut that sends a command through an infrared blaster. The spoken Siri path still needs verification.","links":["lights","server"]},
+    {"id":"galaxy-map","name":"This map","cluster":"showcase","status":"building","blurb":"An interactive map built from a small public data file. It shows a dated snapshot of the system.","links":["task-board","portfolio-site"]},
+    {"id":"portfolio-site","name":"Portfolio site","cluster":"showcase","status":"live","blurb":"My portfolio, with case studies of Igor and a team web app.","links":["galaxy-map","trellife"]},
+    {"id":"trellife","name":"Trellife (team project)","cluster":"showcase","status":"live","blurb":"A Trello-style full-stack app built by a three-person bootcamp team. I deployed and run my own copy.","links":["portfolio-site"]}
+  ]
+}
