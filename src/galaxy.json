@@ -29,7 +29,7 @@
     {"id":"lights","name":"Lights by voice","cluster":"home","status":"live","blurb":"I say a phrase to Siri and the server switches bulbs and lamps through a small relay service.","links":["phone","server","ac-voice"]},
     {"id":"watering","name":"Plant watering","cluster":"home","status":"building","blurb":"Wireless soil sensors report moisture to the server; pumps and automatic watering to follow.","links":["server"]},
     {"id":"ac-voice","name":"AC by voice","cluster":"home","status":"building","blurb":"I’ve tested the manual shortcut that sends a command through an infrared blaster. The spoken Siri path still needs verification.","links":["lights","server"]},
-    {"id":"galaxy-map","name":"This map","cluster":"showcase","status":"building","blurb":"An interactive map built from a small public data file. It shows a dated snapshot of the system.","links":["task-board","portfolio-site"]},
+    {"id":"galaxy-map","name":"This map","cluster":"showcase","status":"live","blurb":"An interactive map built from a small public data file. It shows a dated snapshot of the system.","links":["task-board","portfolio-site"]},
     {"id":"portfolio-site","name":"Portfolio site","cluster":"showcase","status":"live","blurb":"My portfolio, with case studies of Igor and a team web app.","links":["galaxy-map","trellife"]},
     {"id":"trellife","name":"Trellife (team project)","cluster":"showcase","status":"live","blurb":"A Trello-style full-stack app built by a three-person bootcamp team. I deployed and run my own copy.","links":["portfolio-site"]}
   ]

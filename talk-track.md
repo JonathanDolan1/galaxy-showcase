@@ -8,4 +8,4 @@ Some scheduled jobs still depend on my laptop being awake, so I’m moving them 
 
 I built this page myself.
 
-[At publication: add the code link and say “here's the code”.]
+[Here’s the code.](<https://github.com/JonathanDolan1/galaxy-showcase>)

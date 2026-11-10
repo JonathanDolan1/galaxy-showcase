@@ -7,6 +7,8 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const policyPath = ".privacy-policy.json";
 const outputFiles = ["index.html", "map.js", "style.css"];
 const pageLinkFiles = new Set(["src/index.html", "dist/index.html", "scripts/check-privacy.mjs"]);
+const codeLink = "https://github.com/JonathanDolan1/galaxy-showcase";
+const codeLinkFiles = new Set(["src/index.html", "dist/index.html", "talk-track.md", "scripts/check-privacy.mjs"]);
 const publicLinks = new Set([
   "https://jonathan-dolan.vercel.app/",
   "https://jonathan-dolan.vercel.app/#contact",
@@ -59,7 +61,7 @@ function trackedPaths() {
 
 function checkText(source, label, permitsLinks, rules) {
   const urls = source.match(/https?:\/\/[^\s"'<>]+/gi) ?? [];
-  if (urls.some(url => !permitsLinks || !publicLinks.has(url))) {
+  if (urls.some(url => !(permitsLinks && publicLinks.has(url)) && !(codeLinkFiles.has(label) && url === codeLink))) {
     throw new Error(label + ": unexpected URL");
   }
   const text = source.replace(/https?:\/\/[^\s"'<>]+/gi, "");
